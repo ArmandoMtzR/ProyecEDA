@@ -1,3 +1,4 @@
+import arbolExpresionAritmetica.*;
 import java.util.Scanner;
 
 public class ArbolMenu {
@@ -114,7 +115,7 @@ public class ArbolMenu {
     }
 
     private static void menuArbolExpresion() {
-        ExpressionTree expTree = new ExpressionTree();  // Instancia del árbol de Expresión Aritmética
+        ArbolAE expTree = new ArbolAE();  // Instancia del árbol de Expresión Aritmética
         int opcion;
 
         do {
@@ -131,16 +132,20 @@ public class ArbolMenu {
                 case 1:
                     System.out.print("Ingrese la expresión aritmética: ");
                     String expresion = scanner.nextLine();
-                    expTree.buildTree(expresion);
+                    expTree.crearARbolEA(expresion);
+                    System.out.println("Árbol de expansión aritmética creado con éxito.");
                     break;
                 case 2:
-                    expTree.display();
+                    System.out.println("Árbol de expansión aritmética generado:");
+                    expTree.mostrarArbol();
                     break;
                 case 3:
-                    System.out.println("Resultado: " + expTree.solve());
+                    System.out.println("Resultado de la expresión ingresada: " + expTree.evaluarExpresion());
+                    expTree = null;
                     break;
                 case 0:
                     break;
+                    System.out.println("Saliendo de árbol de expansión aritmética...");
                 default:
                     System.out.println("Opción no válida.");
             }
