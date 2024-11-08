@@ -8,12 +8,12 @@ public class ArbolMenu {
         int opcion;
 
         do {
-            System.out.println("Seleccione el tipo de Árbol:");
+            System.out.println("-----Seleccione el tipo de Árbol-----");
             System.out.println("1. Árbol AVL");
             System.out.println("2. Árbol Red Black");
             System.out.println("3. Árbol de Expresión Aritmética");
             System.out.println("0. Salir");
-            System.out.print("Opción: ");
+            System.out.print("Que opción deseas: ");
             opcion = scanner.nextInt();
             scanner.nextLine(); // Limpiar buffer
 
@@ -41,7 +41,7 @@ public class ArbolMenu {
         int opcion;
 
         do {
-            System.out.println("\n--- Árbol AVL ---");
+            System.out.println("\n----- Árbol AVL ------");
             System.out.println("1. Agregar clave");
             System.out.println("2. Buscar valor");
             System.out.println("3. Eliminar clave");
@@ -83,12 +83,12 @@ public class ArbolMenu {
         int opcion;
 
         do {
-            System.out.println("\n--- Árbol Red Black ---");
+            System.out.println("\n------ Árbol Red Black -------");
             System.out.println("1. Agregar clave");
             System.out.println("2. Eliminar clave");
             System.out.println("3. Mostrar árbol");
             System.out.println("0. Regresar al menú principal");
-            System.out.print("Opción: ");
+            System.out.print("Ingresa la opción: ");
             opcion = scanner.nextInt();
             scanner.nextLine(); // Limpiar buffer
 
@@ -119,12 +119,12 @@ public class ArbolMenu {
         int opcion;
 
         do {
-            System.out.println("\n--- Árbol de Expresión Aritmética ---");
+            System.out.println("\n------ Árbol de Expresión Aritmética -----");
             System.out.println("1. Ingresar expresión");
             System.out.println("2. Mostrar árbol");
             System.out.println("3. Resolver");
             System.out.println("0. Regresar al menú principal");
-            System.out.print("Opción: ");
+            System.out.print("Ingresa la opción: ");
             opcion = scanner.nextInt();
             scanner.nextLine(); // Limpiar buffer
 
