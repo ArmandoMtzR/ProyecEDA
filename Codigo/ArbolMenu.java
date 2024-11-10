@@ -181,7 +181,6 @@ public class ArbolMenu {
                         if(expTree != null) {
                             System.out.println("Resultado de la expresión: "+ expTree.evaluarExpresion());
                             System.out.println("Para crear un nuevo árbol, ingrese una nueva expresión.");
-                            expTree = null;
                         } else {
                             System.out.println("No se ha creado ningún árbol de expresión. Ingrese primero una expresión aritmética.");
                         }
