@@ -6,11 +6,9 @@ import java.util.LinkedList;
 
 /**
  * Representa un árbol de expresión aritmética.
- * El árbol se construye a partir de una expresión aritmética en notación infija,
- * y permite evaluarla la expresión en notación postfija (polaca inversa).
+ * El árbol se construye a partir de una expresión aritmética en notación infija, y permite evaluarla la expresión en notación postfija (polaca inversa).
  * 
- * Además permite mostrar la expresión o la estructura del árbol en la terminal
- * según se requiera.
+ * Además permite mostrar la expresión o la estructura del árbol en la terminal según se requiera.
  * 
  * @author Equipo 12. Estructura de Datos y Algoritmos II, Grupo 07, FI-UNAM, 2025-1.
  */
@@ -148,9 +146,8 @@ public class ArbolEA {
     }
 
     /**
-     * Crea el árbol de expresión aritmética a partir de una cadena de texto que representa la 
-     * expresión aritmética. Utiliza el algoritmo de Shunting Yard para convertir la notación
-     * infija en un árbol binario.
+     * Crea el árbol de expresión aritmética a partir de una cadena de texto que representa la expresión aritmética. 
+     * Utiliza el algoritmo de Shunting Yard para convertir la notación infija en un árbol binario.
      * 
      * @param expresion La expresión aritmética en notación infija.
      * @return El nodo raíz del árbol de expresión.
@@ -212,8 +209,7 @@ public class ArbolEA {
     }
 
     /**
-     * Convierte el árbol de expresión a notación polaca inversa utilizando un recorrido
-     * postorden.
+     * Convierte el árbol de expresión a notación polaca inversa utilizando un recorrido postorden.
      * 
      * @return La cola donde se almacenan los nodos en postorden.
      */
