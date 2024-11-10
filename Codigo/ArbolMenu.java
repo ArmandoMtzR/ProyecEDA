@@ -1,5 +1,5 @@
 import arbolExpresionAritmetica.*;
-import arbolAVL.AVLTree;
+import arbolAVL.*;
 import arbolHeap.MaxHeapTree;
 import java.util.Scanner;
 import java.util.InputMismatchException;
@@ -71,7 +71,7 @@ public class ArbolMenu {
                     avlTree.delete(eliminar);
                     break;
                 case 4:
-                    avlTree.display();
+                    arbolAVL.MostrarAVL.display(avlTree);
                     break;
                 case 0:
                     break;
