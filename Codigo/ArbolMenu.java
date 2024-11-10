@@ -1,6 +1,8 @@
 import arbolExpresionAritmetica.*;
 import arbolAVL.AVLTree;
+import arbolHeap.MaxHeapTree;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class ArbolMenu {
     private static Scanner scanner = new Scanner(System.in);
@@ -11,7 +13,7 @@ public class ArbolMenu {
         do {
             System.out.println("-----Seleccione el tipo de Árbol-----");
             System.out.println("1. Árbol AVL");
-            System.out.println("2. Árbol Red Black");
+            System.out.println("2. Árbol MaxHeap");
             System.out.println("3. Árbol de Expresión Aritmética");
             System.out.println("0. Salir");
             System.out.print("Que opción deseas: ");
@@ -23,7 +25,7 @@ public class ArbolMenu {
                     menuArbolAVL();
                     break;
                 case 2:
-                    menuArbolRedBlack();
+                    menuArbolHeap();
                     break;
                 case 3:
                     menuArbolExpresion();
@@ -77,14 +79,15 @@ public class ArbolMenu {
                     System.out.println("Opción no válida.");
             }
         } while (opcion != 0);
+        System.out.println();
     }
 
-    private static void menuArbolRedBlack() {
-        RedBlackTree rbTree = new RedBlackTree();  // Instancia del árbol Red-Black
+    private static void menuArbolHeap() {
+        MaxHeapTree maxHeap = new MaxHeapTree();  // Instancia del árbol Red-Black
         int opcion;
 
         do {
-            System.out.println("\n------ Árbol Red Black -------");
+            System.out.println("\n------ Árbol Max Heap -------");
             System.out.println("1. Agregar clave");
             System.out.println("2. Eliminar clave");
             System.out.println("3. Mostrar árbol");
@@ -96,16 +99,26 @@ public class ArbolMenu {
             switch(opcion) {
                 case 1:
                     System.out.print("Ingrese la clave a agregar: ");
-                    int clave = scanner.nextInt();
-                    rbTree.insert(clave);
+                    try {
+                        int clave = scanner.nextInt();
+                        maxHeap.insert(clave);
+                    } catch (InputMismatchException e) {
+                        System.out.println("Ingrese un número");
+                        scanner.next(); 
+                    }
                     break;
                 case 2:
                     System.out.print("Ingrese la clave a eliminar: ");
-                    int eliminar = scanner.nextInt();
-                    rbTree.delete(eliminar);
+                    try {
+                        int eliminar = scanner.nextInt();
+                        maxHeap.delete(eliminar);
+                    } catch (InputMismatchException e) {
+                        System.out.println("Ingrese un número");
+                        scanner.next(); 
+                    }
                     break;
                 case 3:
-                    rbTree.display();
+                    maxHeap.display();
                     break;
                 case 0:
                     break;
@@ -113,44 +126,80 @@ public class ArbolMenu {
                     System.out.println("Opción no válida.");
             }
         } while (opcion != 0);
+        System.out.println();
     }
 
     private static void menuArbolExpresion() {
-        ArbolAE expTree = new ArbolAE();  // Instancia del árbol de Expresión Aritmética
+        ArbolEA expTree = null; // Instancia del árbol de Expresión Aritmética
         int opcion;
-
+        
         do {
-            System.out.println("\n------ Árbol de Expresión Aritmética -----");
-            System.out.println("1. Ingresar expresión");
-            System.out.println("2. Mostrar árbol");
-            System.out.println("3. Resolver");
-            System.out.println("0. Regresar al menú principal");
-            System.out.print("Ingresa la opción: ");
-            opcion = scanner.nextInt();
-            scanner.nextLine(); // Limpiar buffer
+            try {
+                System.out.println("\n------ Árbol de Expresión Aritmética -----");
+                System.out.println("1. Ingresar expresión");
+                System.out.println("2. Mostrar árbol");
+                System.out.println("3. Resolver");
+                System.out.println("0. Regresar al menú principal");
+                System.out.print("Ingresa la opción: ");
+                opcion = scanner.nextInt();
+                scanner.nextLine(); // Limpiar buffer
 
-            switch(opcion) {
-                case 1:
-                    System.out.print("Ingrese la expresión aritmética: ");
-                    String expresion = scanner.nextLine();
-                    expTree.crearARbolEA(expresion);
-                    System.out.println("Árbol de expansión aritmética creado con éxito.");
-                    break;
-                case 2:
-                    System.out.println("Árbol de expansión aritmética generado:");
-                    expTree.mostrarArbol();
-                    break;
-                case 3:
-                    System.out.println("Resultado de la expresión ingresada: " + expTree.evaluarExpresion());
-                    expTree = null;
-                    break;
-                case 0:
-                    break;
-                    System.out.println("Saliendo de árbol de expansión aritmética...");
-                default:
-                    System.out.println("Opción no válida.");
+                switch(opcion) {
+                    case 1:
+                        System.out.println("Es posible realizar las siguientes operaciones: suma(+), resta(-), multiplicación(*), división(/) y potencia(^).");
+                        System.out.println("Ingrese la expresión aritmética: ");
+                        String expresion = scanner.nextLine();
+
+                        boolean valido = true;
+                        for(int i = 0; i < expresion.length(); i++) {
+                            char c = expresion.charAt(i);
+                            if(!Character.isDigit(c) && "+-*/^()".indexOf(c) == -1 && c != ' ') {
+                                valido = false; // Verifica que la entrada sea la adecuada
+                                break;
+                            }
+                        }
+                        
+                        if(valido) {
+                            expTree = new ArbolEA(expresion);
+                            System.out.println("EL árbol de expresión aritmética se ha creado con éxito.");
+                            expTree.notacionPostfija();
+                        } else {
+                            System.out.println("La expresión contiene caracteres no válidos. Use solo números, operadores y paréntesis.");
+                        }
+                        break;
+
+                    case 2:
+                        if(expTree != null) {
+                            System.out.println("Árbol de expresión aritmética:");
+                            expTree.mostrarArbol();
+                        } else {
+                            System.out.println("No se ha creado ningún árbol de expresión. Ingrese primero una expresión aritmética.");
+                        }
+                        break;
+
+                    case 3:
+                        if(expTree != null) {
+                            System.out.println("Resultado de la expresión: "+ expTree.evaluarExpresion());
+                            System.out.println("Para crear un nuevo árbol, ingrese una nueva expresión.");
+                        } else {
+                            System.out.println("No se ha creado ningún árbol de expresión. Ingrese primero una expresión aritmética.");
+                        }
+                        break;
+
+                    case 0:
+                        System.out.println("Saliendo de árbol de expresión aritmética...");
+                        expTree = null;
+                        break;
+
+                    default:
+                        System.out.println("Opción no válida.");
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Error: Entrada no válida. Por favor, ingrese un número correspondiente a las opciones del menú.");
+                scanner.nextLine();
+                opcion = -1;
             }
         } while (opcion != 0);
     }
 }
-

@@ -4,9 +4,9 @@ package arbolExpresionAritmetica;
  * Represente un nodo de un árbol de expresión aritmética.
  * Cada nodo puede contener un operando o un operador.
  * Los nodos hoja contiene únicamente operandos, mientras que los operadores
- * pueden tener hasta dos hijos: izquierdo y derecho.
+ * pueden tener hasta dos hijos: izquierdo y derecho; ya sean operadores u operandos.
  * 
- * @author Carlos Roberto Vázquez Villegas
+ * @author Equipo 12. Estructura de Datos y Algoritmos II, Grupo 07, FI-UNAM, 2025-1.
  */
 public class NodoEA {
     private Integer operando;
