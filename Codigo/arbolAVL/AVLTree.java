@@ -35,6 +35,7 @@ public class AVLTree {
     }
 
     // Rotación simple a la izquierda
+    //Impremebtación basada en el Pseudocodigo del documento Paguina 13
     private NodoAVL rotarIzquierda(NodoAVL x) {
         NodoAVL y = x.derecho;
         NodoAVL T2 = y.izquierdo;
@@ -167,7 +168,7 @@ public class AVLTree {
         inOrder(raiz);
         System.out.println();
     }
-
+    //InOrden Obtenido de la Pracica 8-9
     private void inOrder(NodoAVL nodo) {
         if (nodo != null) {
             inOrder(nodo.izquierdo);
