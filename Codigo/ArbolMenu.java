@@ -1,6 +1,8 @@
 import arbolExpresionAritmetica.*;
 import arbolAVL.AVLTree;
+import arbolHeap.MaxHeapTree;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class ArbolMenu {
     private static Scanner scanner = new Scanner(System.in);
@@ -11,7 +13,7 @@ public class ArbolMenu {
         do {
             System.out.println("-----Seleccione el tipo de Árbol-----");
             System.out.println("1. Árbol AVL");
-            System.out.println("2. Árbol Red Black");
+            System.out.println("2. Árbol MaxHeap");
             System.out.println("3. Árbol de Expresión Aritmética");
             System.out.println("0. Salir");
             System.out.print("Que opción deseas: ");
@@ -23,7 +25,7 @@ public class ArbolMenu {
                     menuArbolAVL();
                     break;
                 case 2:
-                    menuArbolRedBlack();
+                    menuArbolHeap();
                     break;
                 case 3:
                     menuArbolExpresion();
@@ -77,14 +79,15 @@ public class ArbolMenu {
                     System.out.println("Opción no válida.");
             }
         } while (opcion != 0);
+        System.out.println();
     }
 
-    private static void menuArbolRedBlack() {
-        RedBlackTree rbTree = new RedBlackTree();  // Instancia del árbol Red-Black
+    private static void menuArbolHeap() {
+        MaxHeapTree maxHeap = new MaxHeapTree();  // Instancia del árbol Red-Black
         int opcion;
 
         do {
-            System.out.println("\n------ Árbol Red Black -------");
+            System.out.println("\n------ Árbol Max Heap -------");
             System.out.println("1. Agregar clave");
             System.out.println("2. Eliminar clave");
             System.out.println("3. Mostrar árbol");
@@ -96,16 +99,26 @@ public class ArbolMenu {
             switch(opcion) {
                 case 1:
                     System.out.print("Ingrese la clave a agregar: ");
-                    int clave = scanner.nextInt();
-                    rbTree.insert(clave);
+                    try {
+                        int clave = scanner.nextInt();
+                        maxHeap.insert(clave);
+                    } catch (InputMismatchException e) {
+                        System.out.println("Ingrese un número");
+                        scanner.next(); 
+                    }
                     break;
                 case 2:
                     System.out.print("Ingrese la clave a eliminar: ");
-                    int eliminar = scanner.nextInt();
-                    rbTree.delete(eliminar);
+                    try {
+                        int eliminar = scanner.nextInt();
+                        maxHeap.delete(eliminar);
+                    } catch (InputMismatchException e) {
+                        System.out.println("Ingrese un número");
+                        scanner.next(); 
+                    }
                     break;
                 case 3:
-                    rbTree.display();
+                    maxHeap.display();
                     break;
                 case 0:
                     break;
@@ -113,10 +126,11 @@ public class ArbolMenu {
                     System.out.println("Opción no válida.");
             }
         } while (opcion != 0);
+        System.out.println();
     }
 
     private static void menuArbolExpresion() {
-        ArbolAE expTree = new ArbolAE();  // Instancia del árbol de Expresión Aritmética
+        ArbolEA expTree = new ArbolEA();  // Instancia del árbol de Expresión Aritmética
         int opcion;
 
         do {
@@ -133,7 +147,7 @@ public class ArbolMenu {
                 case 1:
                     System.out.print("Ingrese la expresión aritmética: ");
                     String expresion = scanner.nextLine();
-                    expTree.crearARbolEA(expresion);
+                    expTree.crearArbolEA(expresion);
                     System.out.println("Árbol de expansión aritmética creado con éxito.");
                     break;
                 case 2:
@@ -145,12 +159,13 @@ public class ArbolMenu {
                     expTree = null;
                     break;
                 case 0:
-                    break;
                     System.out.println("Saliendo de árbol de expansión aritmética...");
+                    break;
                 default:
                     System.out.println("Opción no válida.");
             }
         } while (opcion != 0);
+        System.out.println();
     }
 }
 
