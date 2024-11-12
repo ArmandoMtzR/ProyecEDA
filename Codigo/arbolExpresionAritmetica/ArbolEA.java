@@ -161,7 +161,7 @@ public class ArbolEA {
         for(int i = 0; i < expresion.length(); i++) {
             char caracterActual = expresion.charAt(i);
             
-            if (caracterActual == '-' && (i == 0 || esOperador(expresion.charAt(i - 1)))) { // En caso de ingresar números negativos
+            if (caracterActual == '-' && ((i == 0 || esOperador(expresion.charAt(i - 1))) && expresion.charAt(i + 1) != '(')) { // En caso de ingresar números negativos
                 sb.append(caracterActual);
             }   else if(Character.isDigit(caracterActual)) {
                 sb.append(caracterActual);
