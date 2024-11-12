@@ -113,7 +113,7 @@ public class NodoEA {
     }
 
     /**
-     * Establace el nodo hijo izquierdo.
+     * Establece el nodo hijo izquierdo.
      * 
      * @param izquierdo El nodo hijo izquierdo a establecer.
      */
