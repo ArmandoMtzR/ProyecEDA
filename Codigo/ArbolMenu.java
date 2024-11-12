@@ -1,6 +1,6 @@
 import arbolExpresionAritmetica.*;
 import arbolAVL.*;
-import arbolHeap.MaxHeapTree;
+import arbolHeap.*;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
